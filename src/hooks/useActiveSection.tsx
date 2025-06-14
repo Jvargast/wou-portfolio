@@ -1,27 +1,24 @@
 import { useEffect, useState } from "react";
 
-export function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState("");
+export function useActiveSection(sectionIds: string[], isPaused = false) {
+  const [active, setActive] = useState("");
 
   useEffect(() => {
+    if (isPaused) return; 
+
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
+      (entries) =>
+        entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { threshold: 0.5 }
     );
 
     sectionIds.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, [sectionIds]);
+  }, [sectionIds, isPaused]);
 
-  return activeSection;
+  return active;
 }
