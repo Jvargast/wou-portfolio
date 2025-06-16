@@ -42,6 +42,11 @@ export const metadata: Metadata = {
     images: ["/wou-og-image.png"],
     creator: "@wouchile",
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
