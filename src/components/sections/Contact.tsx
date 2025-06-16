@@ -10,6 +10,8 @@ import {
   LucideSend,
 } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const contactMethods = [
   {
@@ -294,10 +296,15 @@ export default function Contact() {
                 Si necesitas tu proyecto listo ya, podemos ayudarte con tiempos
                 de entrega express.
               </p>
-              <button className="inline-flex items-center px-6 py-3 bg-white/10 border border-white/20 rounded-xl text-white font-semibold transition-all duration-200 hover:bg-white/20 hover:scale-105">
-                Contacto directo
-                <LucideArrowRight className="w-4 h-4 ml-2" />
-              </button>
+              <Button
+                asChild
+                className="inline-flex items-center px-6 py-3 bg-white/10 border border-white/20 rounded-xl text-white font-semibold transition-all duration-200 hover:bg-white/20 hover:scale-105"
+              >
+                <Link href="#contacto">
+                  Contacto directo
+                  <LucideArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
             </div>
           </motion.div>
         </div>

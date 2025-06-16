@@ -2,6 +2,7 @@
 import { motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useMemo } from "react";
 
@@ -96,6 +97,7 @@ export default function Hero() {
 
           <motion.div variants={fadeUp} custom={2}>
             <Button
+              asChild
               size="lg"
               className="relative inline-flex items-center justify-center rounded-2xl px-10 py-5 font-semibold transition-all duration-300 shadow-xl hover:scale-105"
               style={{
@@ -104,9 +106,11 @@ export default function Hero() {
                 boxShadow: "0 4px 40px 0 rgba(163, 60, 246, 0.2)",
               }}
             >
-              <span className="relative z-10 text-lg font-bold text-white tracking-wide">
-                Comienza tu proyecto
-              </span>
+              <Link href="#contacto">
+                <span className="relative z-10 text-lg font-bold text-white tracking-wide">
+                  Comienza tu proyecto
+                </span>
+              </Link>
             </Button>
           </motion.div>
         </motion.div>
