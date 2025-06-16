@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { LucideCode, LucideZap, LucideHeadphones } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
@@ -139,9 +141,12 @@ export default function AboutUs() {
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
               ¿Tienes una idea? Hablemos y veamos cómo la hacemos realidad.
             </p>
-            <button className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-fuchsia-500 to-cyan-500 rounded-full text-white font-semibold text-lg shadow-lg shadow-fuchsia-500/20 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-fuchsia-500/30 active:scale-95">
-              Empezar mi proyecto
-            </button>
+            <Button
+              asChild
+              className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-fuchsia-500 to-cyan-500 rounded-full text-white font-semibold text-lg shadow-lg shadow-fuchsia-500/20 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-fuchsia-500/30 active:scale-95"
+            >
+              <Link href="#contacto">Empezar mi proyecto</Link>
+            </Button>
           </div>
         </motion.div>
       </div>

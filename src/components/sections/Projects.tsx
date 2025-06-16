@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Carousel,
   CarouselContent,
@@ -209,6 +210,7 @@ export default function Proyectos() {
                           }}
                         >
                           <Button
+                            asChild
                             size="sm"
                             className="rounded-2xl px-6 py-3 font-semibold shadow-xl"
                             style={{
@@ -216,9 +218,11 @@ export default function Proyectos() {
                                 "linear-gradient(135deg, #d946ef 0%, #9333ea 50%, #3b82f6 100%)",
                             }}
                           >
-                            <span className="text-sm font-bold text-white">
-                              Ver Proyecto →
-                            </span>
+                            <Link href={project.link}>
+                              <span className="text-sm font-bold text-white">
+                                Ver Proyecto →
+                              </span>
+                            </Link>
                           </Button>
                         </div>
                       </div>
