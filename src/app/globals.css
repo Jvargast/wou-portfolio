@@ -30,6 +30,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
@@ -56,43 +57,38 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
-  * {
+  input,
+  button,
+  [role="button"],
+  .card,
+  .border-element {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
 @layer utilities {
-  .mask-radial-fade {
-    -webkit-mask-image: radial-gradient(
-      circle at 50% 50%,
-      white 70%,
-      transparent 95%
-    );
-    mask-image: radial-gradient(circle at 50% 50%, white 70%, transparent 95%);
-  }
-}
-
-@layer utilities {
-  .xl\\:translate-x-18 {
+  .xl\:translate-x-18 {
     @apply xl:translate-x-[72px];
   }
 
+  .mask-radial-fade {
+    mask-image: radial-gradient(circle at 50% 50%, white 70%, transparent 95%);
+  }
+
   .mask-radial-tight {
-    -webkit-mask-image: radial-gradient(
-      50% 60% at 72% 50%,
-      white 50%,
-      transparent 100%
-    );
     mask-image: radial-gradient(
       50% 60% at 72% 50%,
       white 50%,
       transparent 100%
     );
+  }
+
+  .mask-radial-simple {
+    mask-image: radial-gradient(circle, white 60%, transparent 80%);
   }
 }

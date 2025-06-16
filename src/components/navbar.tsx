@@ -22,7 +22,7 @@ export default function Navbar({ links, activeSection }: NavbarProps) {
               alt="Logo Wou Chile"
               fill
               className="object-contain drop-shadow-md"
-              priority
+              loading="lazy"
             />
           </div>
           <span className="text-2xl font-bold tracking-tight text-foreground">

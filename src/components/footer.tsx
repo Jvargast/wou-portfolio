@@ -13,6 +13,7 @@ export default function Footer() {
                 src="/wou-logotipo.png"
                 alt="Logo Wou Chile"
                 fill
+                loading="lazy"
                 className="object-contain drop-shadow-md"
               />
             </div>

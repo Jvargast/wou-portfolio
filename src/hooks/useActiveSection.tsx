@@ -1,24 +1,34 @@
 import { useEffect, useState } from "react";
 
-export function useActiveSection(sectionIds: string[], isPaused = false) {
-  const [active, setActive] = useState("");
+export function useActiveSection(ids: string[], isPaused = false) {
+  const NAV_HEIGHT = 72;
+  const [active, setActive] = useState(ids[0] ?? "");
 
   useEffect(() => {
-    if (isPaused) return; 
+    if (isPaused) return;
 
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
-      { threshold: 0.5 }
-    );
+    const handler = () => {
+      const scrollPos = window.scrollY + NAV_HEIGHT + 1; 
+      let current = ids[0];
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.offsetTop <= scrollPos) current = id;
+      }
 
-    return () => observer.disconnect();
-  }, [sectionIds, isPaused]);
+      setActive(current);
+    };
+
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
+    window.addEventListener("resize", handler);
+
+    return () => {
+      window.removeEventListener("scroll", handler);
+      window.removeEventListener("resize", handler);
+    };
+  }, [ids, isPaused]);
 
   return active;
 }

@@ -27,7 +27,7 @@ export default function NavbarMobile({
               alt="Logo Wou Chile"
               fill
               className="object-contain drop-shadow-md"
-              priority
+              loading="lazy"
             />
           </div>
           <span className="text-xl font-bold tracking-tight text-primary">
