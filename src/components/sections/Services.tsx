@@ -7,6 +7,8 @@ import {
   LucideRocket,
   LucideArrowUpRight,
 } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
@@ -172,9 +174,12 @@ export default function Services() {
           <p className="text-white/60 mb-6 text-lg">
             ¿Listo para transformar tu negocio?
           </p>
-          <button className="px-8 py-4 bg-gradient-to-r from-fuchsia-500 to-cyan-500 rounded-full text-white font-semibold shadow-lg transition-all duration-200 hover:scale-105 active:scale-95">
-            Conversemos sobre tu proyecto
-          </button>
+          <Button
+            asChild
+            className="px-8 py-4 bg-gradient-to-r from-fuchsia-500 to-cyan-500 rounded-full text-white font-semibold shadow-lg transition-all duration-200 hover:scale-105 active:scale-95"
+          >
+            <Link href="#contacto">Conversemos sobre tu proyecto</Link>
+          </Button>
         </motion.div>
       </div>
     </section>
