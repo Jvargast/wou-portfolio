@@ -153,12 +153,18 @@ export default function Services() {
                     ))}
                   </div>
 
-                  <div className="flex items-center text-white/50 group-hover:text-white/80 transition-colors duration-200">
-                    <span className="text-sm font-medium mr-2">
-                      Más información
-                    </span>
-                    <LucideArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="flex items-center text-white/50 group-hover:text-white/80 transition-colors duration-200 p-0 h-auto"
+                  >
+                    <Link href="#contacto" className="flex items-center">
+                      <span className="text-sm font-medium mr-2">
+                        Más información
+                      </span>
+                      <LucideArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </Link>
+                  </Button>
                 </div>
               </motion.div>
             )
