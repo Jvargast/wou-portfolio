@@ -7,8 +7,10 @@ export function useActiveSection(ids: string[], isPaused = false) {
   useEffect(() => {
     if (isPaused) return;
 
-    const handler = () => {
-      const scrollPos = window.scrollY + NAV_HEIGHT + 1; 
+    let ticking = false;
+
+    const updateActive = () => {
+      const scrollPos = window.scrollY + NAV_HEIGHT + 1;
       let current = ids[0];
 
       for (const id of ids) {
@@ -18,15 +20,23 @@ export function useActiveSection(ids: string[], isPaused = false) {
       }
 
       setActive(current);
+      ticking = false;
     };
 
-    handler();
-    window.addEventListener("scroll", handler, { passive: true });
-    window.addEventListener("resize", handler);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActive);
+        ticking = true;
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handler);
-      window.removeEventListener("resize", handler);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, [ids, isPaused]);
 
