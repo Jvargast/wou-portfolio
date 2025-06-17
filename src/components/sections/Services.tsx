@@ -153,12 +153,15 @@ export default function Services() {
                     ))}
                   </div>
 
-                  <div className="flex items-center text-white/50 group-hover:text-white/80 transition-colors duration-200">
+                  <Link
+                    href="#contacto"
+                    className="flex items-center text-white/50 group-hover:text-white/80 transition-colors duration-200"
+                  >
                     <span className="text-sm font-medium mr-2">
                       Más información
                     </span>
                     <LucideArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
+                  </Link>
                 </div>
               </motion.div>
             )
