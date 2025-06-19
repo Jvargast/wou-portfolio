@@ -33,10 +33,8 @@ export default function Hero() {
           animate={inView ? "show" : "hidden"}
           className="flex-1 flex flex-col items-center md:items-start text-center md:text-left max-w-xl lg:max-w-2xl"
         >
-          <motion.h1
-            variants={fadeUp}
-            custom={0}
-            className="mb-8 text-3xl xs:text-4xl sm:text-5xl xl:text-7xl font-extrabold leading-tight tracking-tight max-w-[95vw] xs:max-w-[85vw] sm:max-w-xl lg:max-w-2xl mx-auto md:mx-0"
+          <h1
+            className="mb-8 text-3xl xs:text-4xl sm:text-5xl xl:text-7xl font-extrabold leading-tight tracking-tight max-w-[95vw] xs:max-w-[85vw] sm:max-w-xl lg:max-w-2xl mx-auto md:mx-0 animate-fadeInUp"
             style={{
               background:
                 "linear-gradient(135deg, #fde047 0%, #f472b6 50%, #c084fc 100%)",
@@ -61,7 +59,7 @@ export default function Hero() {
               <br className="hidden sm:inline" />
               sobresalientes
             </span>
-          </motion.h1>
+          </h1>
 
           <motion.p
             variants={fadeUp}
