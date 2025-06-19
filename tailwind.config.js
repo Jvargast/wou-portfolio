@@ -60,9 +60,19 @@ module.exports = {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        floatY: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
+        floatX: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(24px)" },
+        },
       },
       animation: {
         fadeInUp: "fadeInUp 0.6s ease-out forwards",
+        floatY: "floatY 3s ease-in-out infinite",
+        floatX: "floatX 4s ease-in-out infinite",
       },
     },
   },

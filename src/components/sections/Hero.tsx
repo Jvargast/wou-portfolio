@@ -4,7 +4,6 @@ import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useMemo } from "react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -21,27 +20,6 @@ export default function Hero() {
     triggerOnce: true,
   });
 
-  const floatingAnimations = useMemo(
-    () => ({
-      leftBlob: {
-        y: [0, -12, 0],
-        transition: {
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut" as const,
-        },
-      },
-      rightBlob: {
-        x: [0, 24, 0],
-        transition: {
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut" as const,
-        },
-      },
-    }),
-    []
-  );
 
   return (
     <section
@@ -129,27 +107,19 @@ export default function Hero() {
           }}
           className="flex-1 flex items-center justify-center w-full md:w-auto relative z-20"
         >
-          <motion.div
-            animate={{ y: floatingAnimations.leftBlob.y }}
-            transition={floatingAnimations.leftBlob.transition}
-            className="absolute left-[-32px] top-[-32px] hidden lg:block will-change-transform"
-          >
+          <div className="absolute left-[-32px] top-[-32px] hidden lg:block will-change-transform animate-floatY">
             <div
               className="h-20 w-20 rounded-full bg-gradient-to-br from-fuchsia-400 to-purple-600 opacity-70"
               style={{ filter: "blur(24px)" }}
             ></div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            animate={{ x: floatingAnimations.rightBlob.x }}
-            transition={floatingAnimations.rightBlob.transition}
-            className="absolute right-[-40px] bottom-[-40px] hidden xl:block will-change-transform"
-          >
+          <div className="absolute right-[-40px] bottom-[-40px] hidden xl:block will-change-transform animate-floatX">
             <div
               className="h-16 w-16 rounded-full bg-gradient-to-tr from-sky-400 to-pink-400 opacity-60"
               style={{ filter: "blur(18px)" }}
             ></div>
-          </motion.div>
+          </div>
 
           <div className="overflow-visible relative flex items-center justify-center">
             <div className="rounded-[3rem] bg-white/5 backdrop-blur-xl shadow-2xl border border-white/10 p-6">
@@ -158,7 +128,6 @@ export default function Hero() {
                 alt="Cohete despegando desde un ordenador"
                 width={500}
                 height={500}
-                priority
                 className="w-[88vw] xs:w-[340px] sm:w-[360px] md:w-[420px] xl:w-[500px] h-auto select-none pointer-events-none max-w-full"
                 draggable={false}
               />
