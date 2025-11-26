@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "Wou Chile",
     images: [
       {
-        url: "/wou-og-image.png",
+        url: "/new-logo.png",
         width: 1200,
         height: 630,
         alt: "Wou Chile - Software y tecnología",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Wou Chile – Soluciones digitales modernas",
     description:
       "Desarrollamos software y soluciones web personalizadas para empresas y emprendedores.",
-    images: ["/wou-og-image.png"],
+    images: ["/new-logo.png"],
     creator: "@wouchile",
   },
   icons: {

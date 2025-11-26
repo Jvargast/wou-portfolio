@@ -23,7 +23,7 @@ export default function NavbarMobile({
         <Link href="#inicio" className="flex items-center gap-3">
           <div className="relative w-10 h-10 sm:w-12 sm:h-12">
             <Image
-              src="/wou-logotipo.png"
+              src="/new-logo.png"
               alt="Logo Wou Chile"
               fill
               className="object-contain drop-shadow-md"

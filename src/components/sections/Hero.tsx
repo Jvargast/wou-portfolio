@@ -55,7 +55,7 @@ export default function Hero() {
                 backgroundClip: "text",
               }}
             >
-              digitales
+              digitales {" "}
               <br className="hidden sm:inline" />
               sobresalientes
             </span>
@@ -66,8 +66,8 @@ export default function Hero() {
             custom={1}
             className="mb-12 text-base xs:text-lg sm:text-xl font-medium text-zinc-100/80 max-w-[95vw] xs:max-w-[85vw] sm:max-w-lg mx-auto md:mx-0"
           >
-            Diseñamos y desarrollamos plataformas web a medida —desde una
-            landing page veloz hasta un sistema complejo— para que tu negocio
+            Diseñamos y desarrollamos plataformas web a medida desde una
+            landing page veloz hasta un sistema complejo para que tu negocio
             crezca con innovación real.
           </motion.p>
 

@@ -10,7 +10,7 @@ export default function Footer() {
           <Link href="/" className="flex items-center gap-3">
             <div className="relative w-10 h-10">
               <Image
-                src="/wou-logotipo.png"
+                src="/new-logo.png"
                 alt="Logo Wou Chile"
                 fill
                 loading="lazy"
