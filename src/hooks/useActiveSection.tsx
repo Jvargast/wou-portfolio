@@ -1,49 +1,50 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
-export function useActiveSection(ids: string[], isPaused = false) {
+const NAVBAR_OFFSET = 96;
+
+export function useActiveSection(ids: string[]) {
   const [active, setActive] = useState(ids[0] ?? "");
 
-  const observedIds = useMemo(() => ids.filter(Boolean), [ids]);
-
   useEffect(() => {
-    if (isPaused || !observedIds.length) return;
+    if (!ids.length) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      let current = ids[0];
 
-        if (visible[0]) setActive(visible[0].target.id);
-      },
-      {
-        root: null,
-        rootMargin: "-35% 0px -55% 0px",
-        threshold: [0, 0.2, 0.5, 1],
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+
+        const top =
+          el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET;
+
+        if (scrollY >= top) {
+          current = id;
+        }
       }
-    );
 
-    observedIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+      setActive(current);
+    };
 
-    return () => observer.disconnect();
-  }, [observedIds, isPaused]);
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [ids]);
 
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (hash && observedIds.includes(hash)) {
-      setActive(hash);
-    }
+    if (!active) return;
 
-    const handleHashChange = () => {
-      const next = window.location.hash.replace("#", "");
-      if (observedIds.includes(next)) setActive(next);
-    };
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, [observedIds]);
+    const currentHash = window.location.hash.replace("#", "");
+    if (currentHash !== active) {
+      window.history.replaceState(null, "", `#${active}`);
+    }
+  }, [active]);
 
   return active;
 }
