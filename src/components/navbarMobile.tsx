@@ -26,8 +26,9 @@ export default function NavbarMobile({
               src="/new-logo.png"
               alt="Logo Wou Chile"
               fill
+              priority
+              sizes="48px"
               className="object-contain drop-shadow-md"
-              loading="lazy"
             />
           </div>
           <span className="text-xl font-bold tracking-tight text-primary">
@@ -56,8 +57,8 @@ export default function NavbarMobile({
             onClick={onClose}
             className={`text-2xl font-extrabold px-6 py-4 rounded-full transition-all ${
               activeSection === l.href.slice(1)
-                ? "bg-white text-black" // Fondo blanco y texto negro cuando está activo
-                : "bg-transparent text-white" // Fondo transparente y texto blanco cuando está inactivo
+                ? "bg-white text-black"
+                : "bg-transparent text-white"
             }`}
           >
             {l.label}

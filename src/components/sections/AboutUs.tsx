@@ -73,7 +73,7 @@ export default function AboutUs() {
           }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-20"
         >
-          {services.map(({ icon: Icon, title, description }, index) => (
+          {services.map(({ icon: Icon, title, description }) => (
             <motion.div
               key={title}
               variants={{

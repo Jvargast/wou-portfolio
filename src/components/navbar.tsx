@@ -21,8 +21,9 @@ export default function Navbar({ links, activeSection }: NavbarProps) {
               src="/new-logo.png"
               alt="Logo Wou Chile"
               fill
+              priority
+              sizes="48px"
               className="object-contain drop-shadow-md"
-              loading="lazy"
             />
           </div>
           <span className="text-2xl font-bold tracking-tight text-foreground">

@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wouchile.cl";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -14,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Wou Chile – Soluciones digitales a tu medida",
   description:
     "Wou Chile es una empresa especializada en desarrollo web, diseño de software y soluciones digitales para startups, pymes y organizaciones. Creamos experiencias modernas, eficientes y a la medida de cada cliente.",
@@ -43,8 +46,11 @@ export const metadata: Metadata = {
     creator: "@wouchile",
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: [
+      { url: "/new-logo.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/new-logo.png",
     apple: "/apple-touch-icon.png",
   },
 };

@@ -1,44 +1,49 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export function useActiveSection(ids: string[], isPaused = false) {
-  const NAV_HEIGHT = 72;
   const [active, setActive] = useState(ids[0] ?? "");
 
+  const observedIds = useMemo(() => ids.filter(Boolean), [ids]);
+
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || !observedIds.length) return;
 
-    let ticking = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
 
-    const updateActive = () => {
-      const scrollPos = window.scrollY + NAV_HEIGHT + 1;
-      let current = ids[0];
-
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        if (el.offsetTop <= scrollPos) current = id;
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      {
+        root: null,
+        rootMargin: "-35% 0px -55% 0px",
+        threshold: [0, 0.2, 0.5, 1],
       }
+    );
 
-      setActive(current);
-      ticking = false;
+    observedIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [observedIds, isPaused]);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash && observedIds.includes(hash)) {
+      setActive(hash);
+    }
+
+    const handleHashChange = () => {
+      const next = window.location.hash.replace("#", "");
+      if (observedIds.includes(next)) setActive(next);
     };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateActive);
-        ticking = true;
-      }
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, [ids, isPaused]);
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [observedIds]);
 
   return active;
 }
