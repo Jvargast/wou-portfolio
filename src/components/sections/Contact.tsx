@@ -17,23 +17,20 @@ const contactMethods = [
   {
     icon: LucideMail,
     title: "Email",
-    description: "Respuesta en 24 horas",
+    description: "Respuesta en menos de 24 horas",
     contact: "hola@tuempresa.com",
-    gradient: "from-fuchsia-500 via-purple-600 to-indigo-600",
   },
   {
     icon: LucidePhone,
     title: "Teléfono",
-    description: "Lunes a Viernes 9AM-6PM",
+    description: "Lunes a viernes · 9:00–18:00",
     contact: "+56 9 1234 5678",
-    gradient: "from-cyan-400 via-blue-500 to-violet-600",
   },
   {
     icon: LucideMapPin,
     title: "Ubicación",
     description: "Santiago, Chile",
-    contact: "Reuniones presenciales",
-    gradient: "from-violet-500 via-purple-500 to-pink-600",
+    contact: "Reuniones online o presenciales",
   },
 ];
 
@@ -43,12 +40,12 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.45,
       ease: [0.22, 1, 0.36, 1],
     },
   },
@@ -85,100 +82,81 @@ export default function Contact() {
     <section
       id="contacto"
       ref={ref}
-      className="relative w-full overflow-hidden px-6 py-32 sm:px-10 md:px-20 xl:px-48 text-white"
+      className="relative w-full overflow-hidden px-6 py-24 sm:px-10 md:px-20 xl:px-48 text-slate-50 border-t border-slate-800/30"
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute left-[-5%] top-[20%] h-[300px] w-[300px] rounded-full bg-fuchsia-500/6 blur-3xl" />
-        <div className="absolute right-[-5%] bottom-[10%] h-[250px] w-[250px] rounded-full bg-cyan-500/6 blur-3xl" />
-        <div className="absolute left-[40%] top-[-5%] h-[200px] w-[200px] rounded-full bg-violet-500/4 blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-6 relative">
+      <div className="relative z-10 container mx-auto px-0 md:px-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16 sm:mb-20"
         >
-          <span className="inline-block px-4 py-2 mb-8 text-sm font-semibold tracking-wider uppercase bg-white/5 border border-white/10 rounded-full text-white/90 backdrop-blur-sm">
-            💬 Hablemos
+          <span className="inline-block px-4 py-2 mb-6 text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase bg-cyan-400/10 border border-cyan-400/30 rounded-full text-cyan-100 backdrop-blur-sm">
+            Hablemos
           </span>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-8 leading-tight">
-            <span
-              style={{
-                background:
-                  "linear-gradient(135deg, #fde047 0%, #f472b6 50%, #c084fc 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Convierte tu
-            </span>
+
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold mb-6 sm:mb-8 leading-tight">
+            <span className="text-slate-50">Convierte tu</span>
             <br />
-            <span className="bg-gradient-to-r from-fuchsia-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-sky-400 via-emerald-400 to-cyan-300 bg-clip-text text-transparent">
               idea en realidad
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Cuéntanos sobre tu proyecto y te ayudamos a{" "}
-            <span className="font-semibold text-cyan-400">hacerlo posible</span>
+
+          <p className="text-base sm:text-lg text-slate-300/85 max-w-2xl mx-auto leading-relaxed">
+            Cuéntanos sobre tu proyecto y vemos cómo{" "}
+            <span className="font-semibold text-cyan-300">
+              llevarlo a producción
+            </span>
             .
           </p>
         </motion.div>
-
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-20"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto mb-16 sm:mb-20"
         >
-          {contactMethods.map(
-            ({ icon: Icon, title, description, contact, gradient }) => (
-              <motion.div
-                key={title}
-                variants={cardVariants}
-                className="group relative p-8 rounded-3xl bg-white/[0.03] backdrop-blur-sm border border-white/10 transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:scale-[1.02] text-center"
-              >
-                <div className="mb-6 mx-auto">
-                  <div className="relative w-16 h-16 mx-auto">
-                    <div
-                      className={`w-full h-full rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}
-                    >
-                      <Icon className="w-8 h-8 text-white" />
-                    </div>
-                  </div>
+          {contactMethods.map(({ icon: Icon, title, description, contact }) => (
+            <motion.div
+              key={title}
+              variants={cardVariants}
+              className="group relative p-6 sm:p-7 rounded-3xl bg-slate-900/70 backdrop-blur-xl border border-slate-700/80 transition-all duration-300 hover:bg-slate-900/90 hover:border-cyan-400/60 hover:-translate-y-1"
+            >
+              <div className="mb-5">
+                <div className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 via-emerald-400 to-cyan-400/90 p-3">
+                  <Icon className="w-5 h-5 text-slate-50" />
                 </div>
+              </div>
 
-                <div>
-                  <h3 className="text-xl font-bold mb-2 text-white">{title}</h3>
-                  <p className="text-white/60 text-sm mb-3">{description}</p>
-                  <p className="text-white/90 font-semibold">{contact}</p>
-                </div>
-              </motion.div>
-            )
-          )}
+              <h3 className="text-lg font-semibold mb-1.5 text-slate-50">
+                {title}
+              </h3>
+              <p className="text-sm text-slate-400 mb-2">{description}</p>
+              <p className="text-sm font-medium text-slate-100">{contact}</p>
+            </motion.div>
+          ))}
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -16 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
             className="relative"
           >
-            <div className="p-8 md:p-10 rounded-3xl bg-white/[0.03] backdrop-blur-sm border border-white/10">
-              <div className="flex items-center mb-8">
+            <div className="p-7 md:p-8 rounded-3xl bg-slate-900/70 backdrop-blur-xl border border-slate-700/80">
+              <div className="flex items-center mb-6">
                 <LucideMessageCircle className="w-6 h-6 text-cyan-400 mr-3" />
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-xl md:text-2xl font-bold text-slate-50">
                   Envíanos un mensaje
                 </h3>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-white/80 text-sm font-medium mb-2">
+                    <label className="block text-slate-300/90 text-sm font-medium mb-1.5">
                       Nombre *
                     </label>
                     <input
@@ -187,12 +165,12 @@ export default function Contact() {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-200"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-700/80 text-slate-50 placeholder-slate-500 focus:outline-none focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 transition-all"
                       placeholder="Tu nombre"
                     />
                   </div>
                   <div>
-                    <label className="block text-white/80 text-sm font-medium mb-2">
+                    <label className="block text-slate-300/90 text-sm font-medium mb-1.5">
                       Email *
                     </label>
                     <input
@@ -201,14 +179,14 @@ export default function Contact() {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-fuchsia-400/50 focus:bg-white/10 transition-all duration-200"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-700/80 text-slate-50 placeholder-slate-500 focus:outline-none focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 transition-all"
                       placeholder="tu@email.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
+                  <label className="block text-slate-300/90 text-sm font-medium mb-1.5">
                     Empresa
                   </label>
                   <input
@@ -216,13 +194,13 @@ export default function Contact() {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-violet-400/50 focus:bg-white/10 transition-all duration-200"
-                    placeholder="Nombre de tu empresa"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-700/80 text-slate-50 placeholder-slate-500 focus:outline-none focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 transition-all"
+                    placeholder="Nombre de tu empresa (opcional)"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
+                  <label className="block text-slate-300/90 text-sm font-medium mb-1.5">
                     Mensaje *
                   </label>
                   <textarea
@@ -231,77 +209,79 @@ export default function Contact() {
                     rows={5}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 transition-all duration-200 resize-none"
-                    placeholder="Cuéntanos sobre tu proyecto..."
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-700/80 text-slate-50 placeholder-slate-500 focus:outline-none focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/60 transition-all resize-none"
+                    placeholder="Cuéntanos brevemente qué necesitas…"
                   />
                 </div>
 
-                <button
+                <Button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-fuchsia-500 to-cyan-500 rounded-xl text-white font-semibold shadow-lg shadow-fuchsia-500/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-fuchsia-500/30 active:scale-95"
+                  className="w-full inline-flex items-center justify-center px-8 py-3.5 bg-gradient-to-r from-sky-500 via-cyan-500 to-emerald-500 rounded-xl text-white font-semibold text-sm sm:text-base shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-cyan-500/30 active:scale-95"
                 >
                   <LucideSend className="w-5 h-5 mr-2" />
                   Enviar mensaje
-                </button>
+                </Button>
               </form>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 16 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="space-y-8"
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="space-y-6"
           >
-            <div className="p-8 md:p-10 rounded-3xl bg-white/[0.03] backdrop-blur-sm border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-6">
-                ¿Por qué elegirnos?
+            <div className="p-7 md:p-8 rounded-3xl bg-slate-900/70 backdrop-blur-xl border border-slate-700/80">
+              <h3 className="text-xl md:text-2xl font-bold text-slate-50 mb-5">
+                ¿Qué puedes esperar?
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3.5">
                 <div className="flex items-start">
-                  <div className="w-2 h-2 rounded-full bg-fuchsia-400 mt-2 mr-4 flex-shrink-0" />
-                  <p className="text-white/80">
-                    <span className="text-fuchsia-400 font-semibold">
-                      Respuesta rápida:
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-400 mr-3 flex-shrink-0" />
+                  <p className="text-sm text-slate-200/90">
+                    <span className="font-semibold text-cyan-300">
+                      Respuesta clara:
                     </span>{" "}
-                    Te contestamos en menos de 24 horas
+                    te respondemos con opciones concretas y tiempos estimados.
                   </p>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 mr-4 flex-shrink-0" />
-                  <p className="text-white/80">
-                    <span className="text-cyan-400 font-semibold">
-                      Sin compromisos:
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-400 mr-3 flex-shrink-0" />
+                  <p className="text-sm text-slate-200/90">
+                    <span className="font-semibold text-emerald-300">
+                      Sin compromiso:
                     </span>{" "}
-                    Conversación inicial completamente gratis
+                    la primera conversación es 100% exploratoria.
                   </p>
                 </div>
                 <div className="flex items-start">
-                  <div className="w-2 h-2 rounded-full bg-violet-400 mt-2 mr-4 flex-shrink-0" />
-                  <p className="text-white/80">
-                    <span className="text-violet-400 font-semibold">
-                      Transparencia total:
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-sky-400 mr-3 flex-shrink-0" />
+                  <p className="text-sm text-slate-200/90">
+                    <span className="font-semibold text-sky-300">
+                      Acompañamiento:
                     </span>{" "}
-                    Te explicamos todo el proceso paso a paso
+                    te explicamos el proceso técnico en lenguaje simple.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="p-8 rounded-3xl bg-gradient-to-br from-fuchsia-500/10 to-cyan-500/10 border border-fuchsia-500/20">
-              <h4 className="text-xl font-bold text-white mb-4">
+            <div className="p-7 md:p-8 rounded-3xl bg-gradient-to-br from-sky-500/10 via-cyan-500/10 to-emerald-500/10 border border-cyan-500/25">
+              <h4 className="text-lg md:text-xl font-bold text-slate-50 mb-3">
                 ¿Proyecto urgente?
               </h4>
-              <p className="text-white/80 mb-6">
-                Si necesitas tu proyecto listo ya, podemos ayudarte con tiempos
-                de entrega express.
+              <p className="text-sm text-slate-200/90 mb-5">
+                Si necesitas levantar algo rápido (MVP, landing de campaña, demo
+                para clientes), podemos adaptar los tiempos y priorizar tu
+                proyecto.
               </p>
               <Button
                 asChild
-                className="inline-flex items-center px-6 py-3 bg-white/10 border border-white/20 rounded-xl text-white font-semibold transition-all duration-200 hover:bg-white/20 hover:scale-105"
+                variant="outline"
+                className="inline-flex items-center px-6 py-2.5 rounded-xl border-slate-300/30 bg-slate-950/40 text-slate-50 text-sm font-semibold hover:bg-slate-900/70 hover:border-cyan-400/50 transition-all"
               >
                 <Link href="#contacto">
-                  Contacto directo
+                  Hablar ahora
                   <LucideArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>

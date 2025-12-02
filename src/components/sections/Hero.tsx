@@ -6,11 +6,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 32 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 * i },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.12 * i },
   }),
 };
 
@@ -20,12 +20,11 @@ export default function Hero() {
     triggerOnce: true,
   });
 
-
   return (
     <section
-      ref={ref}
-      className="relative w-full items-center justify-center overflow-hidden px-6 pt-32 pb-24 sm:px-10 md:px-20 xl:px-48 text-white"
       id="inicio"
+      ref={ref}
+      className="relative w-full overflow-hidden px-6 pt-28 pb-24 sm:px-10 md:px-20 xl:px-48"
     >
       <div className="relative z-10 flex w-full flex-col items-center gap-y-16 md:flex-row md:items-center md:justify-between md:gap-x-20">
         <motion.div
@@ -33,100 +32,92 @@ export default function Hero() {
           animate={inView ? "show" : "hidden"}
           className="flex-1 flex flex-col items-center md:items-start text-center md:text-left max-w-xl lg:max-w-2xl"
         >
-          <h1
-            className="mb-8 text-3xl xs:text-4xl sm:text-5xl xl:text-7xl font-extrabold leading-tight tracking-tight max-w-[95vw] xs:max-w-[85vw] sm:max-w-xl lg:max-w-2xl mx-auto md:mx-0 animate-fadeInUp"
+          <motion.div
+            variants={fadeUp}
+            custom={0}
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-3 py-1 text-xs font-medium text-emerald-200"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            WouChile · Desarrollo y consultoría digital
+          </motion.div>
+
+          <motion.h1
+            variants={fadeUp}
+            custom={0.5}
+            className="mb-6 text-3xl xs:text-4xl sm:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight max-w-[95vw] xs:max-w-[85vw] sm:max-w-xl lg:max-w-2xl mx-auto md:mx-0"
             style={{
               background:
-                "linear-gradient(135deg, #fde047 0%, #f472b6 50%, #c084fc 100%)",
+                "linear-gradient(135deg, #38bdf8 0%, #22c55e 40%, #0ea5e9 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              textShadow: "0 4px 20px rgba(255,190,11,0.3)",
             }}
           >
-            Creamos experiencias
+            Desarrollo web a medida
             <br />
-            <span
-              style={{
-                background:
-                  "linear-gradient(135deg, #e879f9 0%, #38bdf8 50%, #8b5cf6 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              digitales {" "}
-              <br className="hidden sm:inline" />
-              sobresalientes
-            </span>
-          </h1>
+            para negocios que quieren crecer.
+          </motion.h1>
 
           <motion.p
             variants={fadeUp}
             custom={1}
-            className="mb-12 text-base xs:text-lg sm:text-xl font-medium text-zinc-100/80 max-w-[95vw] xs:max-w-[85vw] sm:max-w-lg mx-auto md:mx-0"
+            className="mb-10 text-base xs:text-lg sm:text-xl font-medium text-slate-200/80 max-w-[95vw] xs:max-w-[85vw] sm:max-w-lg mx-auto md:mx-0"
           >
-            Diseñamos y desarrollamos plataformas web a medida desde una
-            landing page veloz hasta un sistema complejo para que tu negocio
-            crezca con innovación real.
+            Diseñamos y construimos plataformas web, sistemas internos y
+            experiencias digitales con foco en rendimiento, usabilidad y
+            escalabilidad, para que tu negocio avance sin fricción.
           </motion.p>
 
-          <motion.div variants={fadeUp} custom={2}>
+          <motion.div
+            variants={fadeUp}
+            custom={2}
+            className="flex flex-col sm:flex-row items-center gap-4"
+          >
             <Button
               asChild
               size="lg"
-              className="relative inline-flex items-center justify-center rounded-2xl px-10 py-5 font-semibold transition-all duration-300 shadow-xl hover:scale-105"
+              className="rounded-2xl px-8 py-5 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
               style={{
                 background:
-                  "linear-gradient(135deg, #d946ef 0%, #9333ea 50%, #3b82f6 100%)",
-                boxShadow: "0 4px 40px 0 rgba(163, 60, 246, 0.2)",
+                  "linear-gradient(135deg, #0ea5e9 0%, #22c55e 40%, #0f766e 100%)",
               }}
             >
-              <Link href="#contacto">
-                <span className="relative z-10 text-lg font-bold text-white tracking-wide">
-                  Comienza tu proyecto
-                </span>
-              </Link>
+              <Link href="#contacto">Comienza tu proyecto</Link>
+            </Button>
+
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="rounded-2xl border-slate-700/70 bg-slate-900/40 text-slate-100 px-8 py-5 text-base font-medium hover:bg-slate-800/80 hover:text-white transition-all duration-200"
+            >
+              <Link href="#proyectos">Ver proyectos</Link>
             </Button>
           </motion.div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, x: 48 }}
+          initial={{ opacity: 0, scale: 0.96, x: 40 }}
           animate={{
             opacity: inView ? 1 : 0,
             scale: inView ? 1 : 0.96,
-            x: inView ? 0 : 48,
+            x: inView ? 0 : 40,
           }}
           transition={{
-            duration: 1,
+            duration: 0.8,
             ease: [0.16, 1, 0.3, 1],
             delay: 0.25,
           }}
-          className="flex-1 flex items-center justify-center w-full md:w-auto relative z-20"
+          className="flex-1 flex items-center justify-center w-full md:w-auto relative"
         >
-          <div className="absolute left-[-32px] top-[-32px] hidden lg:block will-change-transform animate-floatY">
-            <div
-              className="h-20 w-20 rounded-full bg-gradient-to-br from-fuchsia-400 to-purple-600 opacity-70"
-              style={{ filter: "blur(24px)" }}
-            ></div>
-          </div>
-
-          <div className="absolute right-[-40px] bottom-[-40px] hidden xl:block will-change-transform animate-floatX">
-            <div
-              className="h-16 w-16 rounded-full bg-gradient-to-tr from-sky-400 to-pink-400 opacity-60"
-              style={{ filter: "blur(18px)" }}
-            ></div>
-          </div>
-
-          <div className="overflow-visible relative flex items-center justify-center">
-            <div className="rounded-[3rem] bg-white/5 backdrop-blur-xl shadow-2xl border border-white/10 p-6">
+          <div className="relative flex items-center justify-center">
+            <div className="rounded-[2.5rem] bg-slate-900/70 backdrop-blur-xl shadow-2xl border border-slate-700/60 p-5 sm:p-6">
               <Image
                 src="/hero-illustration-solo-image.webp"
-                alt="Cohete despegando desde un ordenador"
+                alt="Ilustración de desarrollo de soluciones digitales"
                 width={500}
                 height={500}
-                className="w-[88vw] xs:w-[340px] sm:w-[360px] md:w-[420px] xl:w-[500px] h-auto select-none pointer-events-none max-w-full"
+                className="w-[88vw] xs:w-[340px] sm:w-[360px] md:w-[420px] xl:w-[480px] h-auto select-none pointer-events-none max-w-full"
                 draggable={false}
               />
             </div>
