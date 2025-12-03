@@ -6,7 +6,6 @@ import {
   LucidePhone,
   LucideMapPin,
   LucideMessageCircle,
-  LucideArrowRight,
   LucideSend,
 } from "lucide-react";
 import { useState } from "react";
@@ -33,6 +32,9 @@ const contactMethods = [
     contact: "Reuniones online o presenciales",
   },
 ];
+
+const WHATSAPP_URL =
+  "https://wa.me/56912345678?text=Hola,%20tengo%20un%20proyecto%20y%20me%20gustaría%20ver%20si%20podemos%20trabajarlo%20contigo.";
 
 const containerVariants = {
   visible: { transition: { staggerChildren: 0.15 } },
@@ -271,18 +273,22 @@ export default function Contact() {
                 ¿Proyecto urgente?
               </h4>
               <p className="text-sm text-slate-200/90 mb-5">
-                Si necesitas levantar algo rápido (MVP, landing de campaña, demo
-                para clientes), podemos adaptar los tiempos y priorizar tu
-                proyecto.
+                Si estás contra el tiempo o necesitas avanzar rápido, escríbenos
+                por WhatsApp y coordinamos de inmediato los próximos pasos.
               </p>
+
               <Button
                 asChild
-                variant="outline"
-                className="inline-flex items-center px-6 py-2.5 rounded-xl border-slate-300/30 bg-slate-950/40 text-slate-50 text-sm font-semibold hover:bg-slate-900/70 hover:border-cyan-400/50 transition-all"
+                className="inline-flex items-center px-6 py-2.5 rounded-xl 
+             bg-emerald-500 text-slate-950 text-sm font-semibold
+             shadow-sm shadow-emerald-500/30
+             transition-all
+             hover:bg-emerald-400 hover:shadow-emerald-500/50 hover:scale-[1.02]
+             active:scale-95"
               >
-                <Link href="#contacto">
-                  Hablar ahora
-                  <LucideArrowRight className="w-4 h-4 ml-2" />
+                <Link href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                  Hablar por WhatsApp
+                  <LucideMessageCircle className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
             </div>
